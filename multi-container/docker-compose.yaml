@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  app:
+    image: prueba
+    ports:
+      - 8033:8033
+    working_dir: /app
+    volumes:
+      - /Users/viktoriob/Documents/HTML/JS/añadirdatos:/app
+    environment:
+      DB_HOST: db
+      DB_USER: viktorio
+      DB_PASSWORD: password
+      DB_NAME: mydatabase
+    command: ["node", "src/index.js"]
+    
+
+  db:
+    image: mysql1:5:7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: viktorio
+      MYSQL_PASSWORD: password
+    volumes:
+      - dbdata:/var/lib/mysql
+      - /Users/viktoriob/Documents/HTML/JS/añadirdatos:/var/lib/mysql
